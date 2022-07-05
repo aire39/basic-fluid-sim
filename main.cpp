@@ -171,8 +171,8 @@ int main()
 
             if (!pause_fluid)
             {
-                FluidHelperFunctions::FluidAddDensity(fluid, (mouse_x / SCALE), (mouse_y / SCALE), 0, 2, 4.0f);
-                FluidHelperFunctions::FluidAddVelocity(fluid, (mouse_x / SCALE), (mouse_y / SCALE), 0, 2, static_cast<float>(mouse_x_dt), static_cast<float>(mouse_y_dt), 0.0f);
+                FluidHelperFunctions::FluidAddDensity(fluid, (mouse_x / SCALE), (mouse_y / SCALE), 0, 5.0f);
+                FluidHelperFunctions::FluidAddVelocity(fluid, (mouse_x / SCALE), (mouse_y / SCALE), 0, static_cast<float>(mouse_x_dt), static_cast<float>(mouse_y_dt), 0.0f);
             }
         }
         else
@@ -278,6 +278,6 @@ void auto_fluid(FluidDataStructures::FluidCube * fluid, const float & dt)
     const float vx = 5.0f;
     const float vy = 2.0f * std::sin(dt);
 
-    FluidHelperFunctions::FluidAddVelocity(fluid, (FLUID_SIZE / 2), (FLUID_SIZE / 2), 0, 1, vx, vy, 0.0f);
-    FluidHelperFunctions::FluidAddDensity(fluid, (FLUID_SIZE / 2), (FLUID_SIZE / 2), 0, 1, 4.0f);
+    FluidHelperFunctions::FluidAddVelocity(fluid, (FLUID_SIZE / 2), (FLUID_SIZE / 2), 0, vx, vy, 0.0f);
+    FluidHelperFunctions::FluidAddDensity(fluid, (FLUID_SIZE / 2), (FLUID_SIZE / 2), 0, 4.0f);
 }

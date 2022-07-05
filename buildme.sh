@@ -8,6 +8,7 @@ cd build
 
 cmake -DCMAKE_BUILD_TYPE=Release ..
 
-cmake --build .
+cmake --build . --config release
 
 cp ../ToThePointRegular.ttf .
+cp ../ToThePointRegular.ttf Release

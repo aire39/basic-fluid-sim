@@ -147,7 +147,7 @@ namespace FluidHelperFunctions
             }
             else
             {
-                index = FluidUtility::IX(x, y, 0, N);
+                index = FluidUtility::IX(x, y, N);
             }
 
             fluid_cube->v_x[index] += amount_x;
