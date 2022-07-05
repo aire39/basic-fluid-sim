@@ -10,9 +10,13 @@ find_package (Threads REQUIRED)
 #add_compile_options("") # effect all build types
 
 if (CMAKE_BUILD_TYPE EQUAL "Debug")
+    if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
     add_compile_options("-O0")
-elseif(CMAKE_BUILD_TYPE EQUAL "Release")
+    endif()
+elseif(CMAKE_BUILD_TYPE EQUAL "Release") 
+    if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
     add_compile_options("-O3")
+    endif()
 endif()
 
 set(BUILD_SHARED_LIBS FALSE) # build using the static libraries

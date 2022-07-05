@@ -6,3 +6,7 @@ https://mikeash.com/pyblog/fluid-simulation-for-dummies.html
 
 This is meant to be a learning experience for myself. The plan is to use vulkan compute shaders to process the simulation on the
 GPU.
+
+compile:
+you can run the buildme.sh script
+
