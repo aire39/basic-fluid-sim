@@ -49,9 +49,7 @@ int main()
     sf::Text txt_control_display_type;
     sf::Font font;
 
-    //if (!font.loadFromFile("Pixellettersfull-BnJ5.ttf"))
-    //if (!font.loadFromFile("ArianaVioleta-dz2K.ttf"))
-    if (!font.loadFromFile("ToThePointRegular-n9y4.ttf"))
+    if (!font.loadFromFile("ToThePointRegular.ttf"))
     {
         show_text = false;
     }
