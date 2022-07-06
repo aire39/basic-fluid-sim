@@ -171,8 +171,8 @@ int main()
 
             if (!pause_fluid)
             {
-                FluidHelperFunctions::FluidAddDensity(fluid, (mouse_x / SCALE), (mouse_y / SCALE), 0, 5.0f);
-                FluidHelperFunctions::FluidAddVelocity(fluid, (mouse_x / SCALE), (mouse_y / SCALE), 0, static_cast<float>(mouse_x_dt), static_cast<float>(mouse_y_dt), 0.0f);
+                FluidHelperFunctions::FluidAddDensity(fluid, (mouse_x / SCALE), (mouse_y / SCALE), 0, 2, 2000.0f);
+                FluidHelperFunctions::FluidAddVelocity(fluid, (mouse_x / SCALE), (mouse_y / SCALE), 0, 2, static_cast<float>(mouse_x_dt), static_cast<float>(mouse_y_dt), 0.0f);
             }
         }
         else
@@ -195,7 +195,7 @@ int main()
                     {
                         if (fluid->density)
                         {
-                            uint8_t cell_value = std::clamp(static_cast<uint8_t>(fluid->density[(j / SCALE) + ((i/SCALE) * (FLUID_SIZE))] * 255.0f), uint8_t(0), uint8_t(255));
+                            auto cell_value = static_cast<uint8_t>(std::clamp(fluid->density[(j / SCALE) + ((i/SCALE) * (FLUID_SIZE))], 0.0f, 255.0f));
                             sprite.LoadPixels(j, i, {draw_colors::color_sky_blue[0], draw_colors::color_sky_blue[1], draw_colors::color_sky_blue[2], cell_value});
                         }
                     }
@@ -203,8 +203,8 @@ int main()
                     {
                         if (fluid->v_x)
                         {
-                            uint8_t cell_value_x = std::clamp(static_cast<uint8_t>(fluid->v_x[(j / SCALE) + ((i/SCALE) * (FLUID_SIZE))] * 255.0f), uint8_t(0), uint8_t(255));
-                            uint8_t cell_value_y = std::clamp(static_cast<uint8_t>(fluid->v_y[(j / SCALE) + ((i/SCALE) * (FLUID_SIZE))] * 255.0f), uint8_t(0), uint8_t(255));
+                            auto cell_value_x = static_cast<uint8_t>(std::clamp(std::abs(fluid->v_x[(j / SCALE) + ((i/SCALE) * (FLUID_SIZE))]) * 255.0f, 0.0f, 255.0f));
+                            auto cell_value_y = static_cast<uint8_t>(std::clamp(std::abs(fluid->v_y[(j / SCALE) + ((i/SCALE) * (FLUID_SIZE))]) * 255.0f, 0.0f, 255.0f));
                             sprite.LoadPixels(j, i, {cell_value_x, cell_value_y, 0, 255});
                         }
                     }
@@ -261,7 +261,7 @@ void fluid_update(FluidDataStructures::FluidCube * fluid, const sf::RenderWindow
         {
             if (enable_pause && !(*enable_pause))
             {
-                dt += 1.0f/30.0f;
+                dt += 1.0f/60.0f;
                 std::unique_lock<std::mutex> lock(draw_mutex);
                 FluidSim::FluidCubeStep2D(fluid);
             }
@@ -275,9 +275,9 @@ void auto_fluid(FluidDataStructures::FluidCube * fluid, const float & dt)
 {
     // create jet stream fluid
 
-    const float vx = 5.0f;
-    const float vy = 2.0f * std::sin(dt);
+    const float vx = 10.0f;
+    const float vy = 10.0f * std::sin(dt*16.0f);
 
-    FluidHelperFunctions::FluidAddVelocity(fluid, (FLUID_SIZE / 2), (FLUID_SIZE / 2), 0, vx, vy, 0.0f);
-    FluidHelperFunctions::FluidAddDensity(fluid, (FLUID_SIZE / 2), (FLUID_SIZE / 2), 0, 4.0f);
+    FluidHelperFunctions::FluidAddVelocity(fluid, (FLUID_SIZE / 2), (FLUID_SIZE / 2), 0, 1, vx, vy, 0.0f);
+    FluidHelperFunctions::FluidAddDensity(fluid, (FLUID_SIZE / 2), (FLUID_SIZE / 2), 0, 1, 2000.0f);
 }
