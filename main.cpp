@@ -7,7 +7,6 @@
 #include <cmath>
 #include <mutex>
 
-#include <windows.h>
 #include <SFML/Window.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Graphics/Font.hpp>
