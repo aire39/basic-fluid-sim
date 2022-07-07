@@ -171,7 +171,7 @@ int main()
             if (!pause_fluid)
             {
                 FluidHelperFunctions::FluidAddDensity(fluid, (mouse_x / SCALE), (mouse_y / SCALE), 0, 2, 2000.0f);
-                FluidHelperFunctions::FluidAddVelocity(fluid, (mouse_x / SCALE), (mouse_y / SCALE), 0, 2, static_cast<float>(mouse_x_dt), static_cast<float>(mouse_y_dt), 0.0f);
+                FluidHelperFunctions::FluidAddVelocity(fluid, (mouse_x / SCALE), (mouse_y / SCALE), 0, 2, mouse_x_dt, mouse_y_dt, 0.0f);
             }
         }
         else
@@ -228,8 +228,6 @@ int main()
         }
 
         window.display();
-
-        std::this_thread::sleep_for(std::chrono::microseconds (16667));
     }
 
     // check if it's okay to join and wait for the thread to complete if this is the case
