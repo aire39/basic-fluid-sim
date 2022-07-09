@@ -10,3 +10,7 @@ GPU.
 compile:
 you can run the buildme.sh script
 
+Tested on: MSVC, MSYS2 (MinGW64), Linux (Manjaro)
+
+![fluid_density](images/fluid_density_dye.png)
+![fluid_density](images/fluid_velocity.png)
